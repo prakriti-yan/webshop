@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lemonade Stand Supply</title>
+<link href="/css/app.css" rel="stylesheet" />
+{{block "styles" .}}{{end}} 
+<!-- block is not mandatory to be there while template is! -->
+</head>
+<body>
+	{{template "_header.html" .}}
+	<!-- It is very important to pass on the datamodel by adding "." -->
+	{{template "content" .}}
+	{{template "_footer.html" .}}
+    {{block "scripts" .}}{{end}}
+</body>
+</html>
