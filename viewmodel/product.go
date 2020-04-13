@@ -1,6 +1,7 @@
 package viewmodel
 
 import (
+	"fmt"
 	"github.com/prakriti-yan/webshop/model"
 )
 
@@ -14,6 +15,7 @@ type Product struct {
 	IsOrganic        bool
 	ImageURL         string
 	ID               int
+	URL              string
 }
 
 func productToVM(product model.Product) Product {
@@ -27,5 +29,6 @@ func productToVM(product model.Product) Product {
 		IsOrganic:        product.IsOrganic,
 		ImageURL:         product.ImageURL,
 		ID:               product.ID,
+		URL:              fmt.Sprintf("/shop/%v/%v", product.CategoryID, product.ID),
 	}
 }

@@ -23,6 +23,16 @@ func GetProductsForCategory(categoryID int) []Product {
 	return result
 }
 
+func GetProduct(categoryID int, ID int) Product {
+	products := GetProductsForCategory(categoryID)
+	for _, p := range products {
+		if p.ID == ID {
+			return p
+		}
+	}
+	return Product{}
+}
+
 var products []Product = []Product{Product{
 	Name:             "Lemon Juice",
 	DescriptionShort: "Made from fresh, organic California lemons.",

@@ -6,18 +6,18 @@
 					<img src="/img/lemon.png" alt="lemon" />
 				</div>
 				<div class="columns small-8 details">
-					<h2>Lemon Juice</h2>
+					<h2>{{.Product.Name}}</h2>
 					<div class="row">
 						<div class="columns small-3 text-right">
 							Price
 						</div>
 						<div class="columns small-8 small-offset-1">
-							$1.09 / liter
+							${{.Product.PricePerLiter}} / liter
 						</div>
 					</div>
 					<div class="row">
 						<div class="columns small-8 small-offset-4">
-							$1.04 / liter (10 or more)
+							${{.Product.PricePer10Liter}}/ liter (10 or more)
 						</div>
 					</div>
 					<div class="row">
@@ -25,7 +25,11 @@
 							Organic
 						</div>
 						<div class="columns small-8 small-offset-1">
-							Yes
+							{{if eq .Product.IsOrganic true}}
+								Yes
+							{{else}}
+								No
+							{{end}}
 						</div>
 					</div>
 					<div class="row">
@@ -33,7 +37,7 @@
 							Origin
 						</div>
 						<div class="columns small-8 small-offset-1">
-							California
+							{{.Product.Origin}}
 						</div>
 					</div>
 				</div>
@@ -46,11 +50,10 @@
 			<div class="row">
 				<div class="columns small-12">
 					<p>
-						Made from premium, organic Meyer lemons. These fruit are left on the tree until they reach the peak of ripeness 
-						and then juiced within 8 hours of being picked. 
+						{{.Product.DescriptionLong}}
 					</p>
 					<p>
-						Lemonade made from our premium juice is sure to make your stand the most popular in the neighborhood.
+						{{.Product.DescriptionShort}}
 					</p>
 				</div>
 			</div>
