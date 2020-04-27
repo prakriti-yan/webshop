@@ -36,6 +36,7 @@ func (s shop) handleShop(w http.ResponseWriter, r *http.Request) {
 	} else {
 		categories := model.GetCategories()
 		vw := viewmodel.NewShop(categories)
+		w.Header().Add("Content-Type", "text/html")
 		s.shopTemplate.Execute(w, vw)
 	}
 }
@@ -43,11 +44,13 @@ func (s shop) handleShop(w http.ResponseWriter, r *http.Request) {
 func (s shop) handleCategory(w http.ResponseWriter, r *http.Request, categoryID int) {
 	products := model.GetProductsForCategory(categoryID)
 	vw := viewmodel.NewShopDetail(products)
+	w.Header().Add("Content-Type", "text/html")
 	s.categoryTemplate.Execute(w, vw)
 }
 
 func (s shop) handleProduct(w http.ResponseWriter, r *http.Request, categoryID int, ID int) {
 	product := model.GetProduct(categoryID, ID)
 	vw := viewmodel.NewShopProduct(product)
+	w.Header().Add("Content-Type", "text/html")
 	s.productTemplate.Execute(w, vw)
 }
