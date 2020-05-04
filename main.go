@@ -13,6 +13,8 @@ import (
 	"github.com/prakriti-yan/webshop/middleware"
 	"github.com/prakriti-yan/webshop/model"
 
+	_ "net/http/pprof"
+
 	_ "github.com/lib/pq" // register postgres driver for us!
 )
 
@@ -21,6 +23,7 @@ func main() {
 	db := connectToDatabase()
 	defer db.Close()
 	controller.Startup(templates)
+	go http.ListenAndServe(":8080", nil) // for profiling since pprof does not work well with middleware!
 	http.ListenAndServeTLS(":8001", "cert.pem", "key.pem", &middleware.TimeoutMiddleware{new(middleware.GzipMiddleware)})
 }
 
